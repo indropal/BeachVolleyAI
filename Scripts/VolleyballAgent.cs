@@ -85,7 +85,7 @@ public class VolleyballAgent : Agent
     public bool CheckIfGrounded()
     {
         /*
-         * Check if the Agent is grounded to the play area or is still in a Jump State.
+         * Check if the Agent is on the ground of the play area or is still in a Jump State.
          * This is done to enable / disable Jump action.
         */
 
