@@ -85,36 +85,28 @@ public class VolleyballAgent : Agent
     public bool CheckIfGrounded()
     {
         /*
-         * Check if the Agent is grounded tothe play area or is still in a Jump State.
+         * Check if the Agent is grounded to the play area or is still in a Jump State.
          * This is done to enable / disable Jump action.
         */
 
-        hitGroundColliders = new Collider[3];
         var o = gameObject;
-
-        // instantiate an overlap buffer region between colliding surfaces
-        Physics.OverlapBoxNonAlloc(
-            o.transform.localPosition + new Vector3(0, -0.05f, 0),
-            new Vector3(0.95f / 2f, 0.5f, 0.95f / 2f),
-            hitGroundColliders,
-            o.transform.rotation
-            );
-
         var grounded = false; // boolean flag for grounded or not
-        
-        // Iterate over the various game object with which the Agent can collide with.
-        foreach (var col in hitGroundColliders)
+
+        var distToGround = 0.75f; // The distance of the center of Agent's game object from its bottom end
+        var distTolerance = 0.1f; // Distance Tolerace i.e. delta value for Raycast interference
+
+        // Using Raycasts to Check if Agent is grounded or not
+        if (Physics.Raycast(o.transform.position, Vector3.down, distToGround + distTolerance))
         {
-            // Check if the Agent is Grounded
-            if (col != null && col.transform != transform &&
-                (col.CompareTag("walkableSurface") ||
-                 col.CompareTag("purpleGoal") ||
-                 col.CompareTag("blueGoal")))
-            {
-                grounded = true; //then Agent is grounded
-                break;
-            }
+            //Debug.Log("Grounded");
+            grounded = true;
         }
+        else
+        {
+            //Debug.Log("Not Grounded");
+            grounded = false;
+        }        
+
         return grounded;
     }
 
@@ -275,8 +267,8 @@ public class VolleyballAgent : Agent
          * 'Observations' are how the agent 'sees' its environment.
          *
          * In ML-Agents, there are 3 types of observations we can use:
-         *    -> 'Vectors' — "direct" information about environment (e.g. list of floats containing the position, scale, velocity, etc of objects)
-         *    -> 'Raycasts' — "beams" that shoot out from the agent and detect nearby objects
+         *    -> 'Vectors' ï¿½ "direct" information about environment (e.g. list of floats containing the position, scale, velocity, etc of objects)
+         *    -> 'Raycasts' ï¿½ "beams" that shoot out from the agent and detect nearby objects
          *    -> 'Visual/camera input' 
          *    
          * In this project, 'vector observations' are implemented to keep things simple.
