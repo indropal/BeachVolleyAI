@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class AnimationMovementController : MonoBehaviour
 {
-    /*
-     * Tutorials referred to : https://www.youtube.com/watch?v=4HpC--2iowE
-     *                         https://www.youtube.com/watch?v=we4CGmkPQ6Q
-     *                         https://www.youtube.com/watch?v=MWQv2Bagwgk
-     *                         https://www.youtube.com/watch?v=D0lx90n0s-4
-     *                         https://www.youtube.com/watch?v=ydjpNNA5804
-     *                         https://www.youtube.com/watch?v=XnKKaL5iwDM
-     */
     // public Transform cam; // reference to player camera
     PlayerInput playerInput;
     CharacterController characterController;
