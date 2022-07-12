@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class AnimationAndMovementController : MonoBehaviour
 {
-    /*
-     Tutorial Source on Character / Animation -Controllers from : https://www.youtube.com/watch?v=bXNFxQpp2qk
-    */
-
     PlayerInputs playerInputs;
     CharacterController characterController;
 
